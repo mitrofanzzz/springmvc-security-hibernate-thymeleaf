@@ -1,0 +1,144 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title></title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+
+<style>
+.error {
+	color: #ff0000;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- .vbox -->
+	<section class="vbox" th:fragment="content">
+
+		<header class="header bg-white b-b">
+			<p>Add / Edit New and Existing Employees.</p>
+		</header>
+
+		<!-- .scrollable wrapper -->
+		<section class="scrollable wrapper">
+		
+			<!--
+				Showing form errors outside the form, requires a different syntax/selector
+				http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#validation-and-error-messages	
+			-->
+			<div th:if="${#fields.hasErrors('${employee.*}')}" class="alert alert-danger alert-block">
+				<button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+				<h4><i class="icon-ban-circle"></i>Error!</h4>
+				<p>Change a few things up and try submitting again.</p>
+				<br/>
+				<ul>
+					<li th:each="err : ${#fields.errors('${employee.*}')}" th:text="${err}">Input is incorrect</li>
+				</ul>
+			</div>
+
+
+
+			<form action="#" th:action="@{/createOrUpdateEmployee}" th:object="${employee}" method="post">
+
+				<input type="hidden" th:field="*{id}" value="0" />
+				
+				<!-- .row -->
+				<div class="row">
+				
+					<div class="col-lg-3 hidden-xs">
+						<strong>Name and contact details</strong>
+						<p>Consectetur adipiscing elit. Sit amet, consectetur adipiscing elit.</p>			
+					</div>
+					
+					<div class="col-lg-6">
+						
+						<div class="form-group">
+							<label class="control-label">Name</label>
+							<input type="text" th:field="*{name}" class="form-control"></input>
+							<p th:if="${#fields.hasErrors('name')}" class="error help-block">
+								<span class="label bg-danger" th:errors="*{name}"></span>
+							</p>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Joining Date</label>
+							<input type="text" th:field="*{joiningDate}" class="form-control"></input>
+							<p th:if="${#fields.hasErrors('joiningDate')}" class="error help-block">
+								<span class="label bg-danger" th:errors="*{joiningDate}"></span>
+							</p>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label">Salary</label>
+							<input type="text" th:field="*{salary}" class="form-control"></input>
+							<p th:if="${#fields.hasErrors('salary')}" class="error help-block">
+								<span class="label bg-danger" th:errors="*{salary}"></span>
+							</p>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label">SSN</label>
+							<input type="text" th:field="*{ssn}" class="form-control"></input>
+							<p th:if="${#fields.hasErrors('ssn')}" class="error help-block">
+								<span class="label bg-danger" th:errors="*{ssn}"></span>
+							</p>
+						</div>
+												
+					</div>
+					
+				</div>
+				<!-- /.row -->
+				
+				<div class="line line-dashed"></div>
+					
+				<!-- .row -->
+				<div class="row">
+				
+					<div class="col-lg-3 hidden-xs">
+						<!-- Spacer -->		
+					</div>
+					
+							
+					<div class="col-lg-6" th:switch="${create}">
+		
+						<button th:case="true" type="submit" class="btn btn-success"><i class="icon-ok"></i> Register</button>
+						<button th:case="false" type="submit" class="btn btn-success"><i class="icon-ok"></i> Update</button>
+		
+					</div>
+		
+				</div>
+				<!-- /.row -->	
+				
+				<!-- .row -->
+				<div class="row">
+				
+					<div class="col-lg-3 hidden-xs">
+						<!-- Spacer -->		
+					</div>
+							
+					<div class="col-lg-6" style="padding-top: 20px;">
+		
+						Go back to <a href="/allemployes.html" th:href="@{/list}" style="text-decoration: underline;">List of All Employees</a>
+		
+					</div>
+		
+				</div>
+				<!-- /.row -->	
+				
+			</form>
+				
+		</section>
+		<!-- /.scrollable wrapper -->
+	        
+	</section>
+	<!-- /.vbox -->
+
+
+
+</body>
+</html>

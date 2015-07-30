@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Good Thymes Virtual Grocery</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+  <link rel="stylesheet" type="text/css" media="all" href="/gtvg/css/gtvg.css" />
+</head>
+
+
+<body>
+
+	<!-- .vbox -->
+	<section class="vbox" th:fragment="content">
+	
+		<header class="header bg-white b-b">
+			<p>Welcome to the administration system.</p>
+		</header>
+		
+		<!-- .scrollable wrapper -->
+		<section class="scrollable wrapper">
+		
+			<!-- .row -->
+			<div class="row">
+			
+				<div class="col-lg-12">
+					<h4>Control Panel</h4>
+					<p>This is an unsecured application using maven, spring mvc, hibernate, thymeleaf, logback.</p>
+					<p>It has been adapted to include the todo theme for the administration area.</p>
+					<p>It was also amended to use thymeleaf in the view layer (instead of jstl) with a special adaptation of thymeleaf layouts.</p>
+					
+					<p>Demo the <a href="/allemployes.html" th:href="@{/list}" style="text-decoration: underline;">application</a></p>
+					
+					<br/>
+					<p>Links that may help :</p>
+					<p>http://websystique.com/springmvc/spring-4-mvc-and-hibernate4-integration-example-using-annotations/</p>
+					<p>http://javaee.ch/2013/11/02/basic-spring-mvc-annotation-based-configuration-example-with-thymeleaf-and-no-xml/</p>
+					<p>http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html</p>
+					<p>http://www.thymeleaf.org/doc/articles/layouts.html</p>
+					<p>http://blog.codeleak.pl/2013/11/thymeleaf-template-layouts-in-spring.html</p>
+				</div>
+				
+			</div>
+			<!-- /.row -->
+				
+		</section>
+		<!-- /.scrollable wrapper -->
+	        
+	</section>
+	<!-- /.vbox -->
+	
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Good Thymes Virtual Grocery</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+  <link rel="stylesheet" type="text/css" media="all" href="/gtvg/css/gtvg.css" />
+</head>
+
+
+<body>
+
+	<!-- .vbox -->
+	<section class="vbox" th:fragment="content">
+	
+		<header class="header bg-white b-b">
+			<p>Show All Employees.</p>
+		</header>
+		
+		<!-- .scrollable wrapper -->
+		<section class="scrollable wrapper">
+		
+			<!-- .row -->
+			<div class="row">
+			
+				<div class="col-lg-12">
+
+					<h2>List of Employees</h2>	
+					
+					<div class="table-responsive">
+						<table class="table table-striped b-t text-sm">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Joining Date</th>							
+									<th>Salary</th>
+									<th>SSN</th>
+									<th>Act.</th>
+									<th>Act.</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="employee : ${employees}">
+									<td th:text="${employee.name}">Name</td>
+									<td th:text="${employee.joiningDate}">Joing Date</td>
+									<td th:text="${employee.salary}">Salary</td>
+									<td th:text="${employee.ssn}">SSN</td>
+									<td><a href="#" th:href="|/edit-${employee.ssn}-employee/|">edit</a></td>
+									<td><a href="#" th:href="@{'/delete-' + ${employee.ssn} + '-employee/'}">delete</a></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+
+					<br/>
+			
+					<a href="/registration.html" th:href="@{/new}" style="text-decoration: underline;">Add New Employee</a>
+		
+				</div>
+				
+			</div>
+			<!-- /.row -->
+				
+		</section>
+		<!-- /.scrollable wrapper -->
+	        
+	</section>
+	<!-- /.vbox -->
+
+</body>
+</html>

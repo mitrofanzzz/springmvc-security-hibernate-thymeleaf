@@ -1,0 +1,65 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Good Thymes Virtual Grocery</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+
+
+<style>
+
+	.error {
+		color: #ff0000;
+	}
+</style>
+
+</head>
+<body>
+
+	<!-- .vbox -->
+	<section class="vbox" th:fragment="content">
+
+		<header class="header bg-white b-b">
+			<p>Success.</p>
+		</header>
+
+		<!-- .scrollable wrapper -->
+		<section class="scrollable wrapper">
+		
+			<!-- .row -->
+			<div class="row">
+			
+					
+				<div class="col-lg-6">
+	
+					<p>Message : <span th:text="${message}"></span></p>
+					
+				</div>
+	
+			</div>
+			<!-- /.row -->	
+			
+			<!-- .row -->
+			<div class="row">
+			
+						
+				<div class="col-lg-6" style="padding-top: 20px;">
+	
+					Go back to Go back to <a href="/allemployes.html" th:href="@{/list}" style="text-decoration: underline;">List of All Employees</a>
+	
+				</div>
+	
+			</div>
+			<!-- /.row -->	
+				
+		</section>
+		<!-- /.scrollable wrapper -->
+	        
+	</section>
+	<!-- /.vbox -->
+	
+</body>
+
+</html>

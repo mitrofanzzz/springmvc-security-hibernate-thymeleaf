@@ -1,0 +1,96 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Good Thymes Virtual Grocery</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+  <link rel="stylesheet" type="text/css" media="all" href="/gtvg/css/gtvg.css" />
+</head>
+
+
+<body>
+
+	<!-- .vbox -->
+	<section class="vbox" th:fragment="content">
+	
+		<header class="header bg-white b-b">
+			<p>Login page.</p>
+		</header>
+		
+		<!-- .scrollable wrapper -->
+		<section class="scrollable wrapper">
+		
+			<!-- .row -->
+			<div class="row">
+			
+				<div class="col-lg-12">
+					<h4>Login with Username and Password</h4>
+				</div>
+				
+			</div>
+			<!-- /.row -->
+			
+			<form action="#" th:action="@{/login}" th:object="${user}" method="post">
+				
+				<!-- .row -->
+				<div class="row">
+				
+					<div class="col-lg-3 hidden-xs">
+						<strong>Login details</strong>
+						<p>Consectetur adipiscing elit. Sit amet, consectetur adipiscing elit.</p>			
+					</div>
+					
+					<div class="col-lg-6">
+						
+						<div class="form-group">
+							<label class="control-label">Username</label>
+							<input type="text" th:field="*{username}" class="form-control"></input>
+							<p th:if="${#fields.hasErrors('username')}" class="error help-block">
+								<span class="label bg-danger" th:errors="*{username}"></span>
+							</p>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Joining Date</label>
+							<input type="text" th:field="*{password}" class="form-control"></input>
+							<p th:if="${#fields.hasErrors('password')}" class="error help-block">
+								<span class="label bg-danger" th:errors="*{password}"></span>
+							</p>
+						</div>
+																	
+					</div>
+					
+				</div>
+				<!-- /.row -->
+				
+				<div class="line line-dashed"></div>
+					
+				<!-- .row -->
+				<div class="row">
+				
+					<div class="col-lg-3 hidden-xs">
+						<!-- Spacer -->		
+					</div>
+					
+							
+					<div class="col-lg-6">
+		
+						<button type="submit" class="btn btn-success"><i class="icon-ok"></i> Login</button>
+		
+					</div>
+		
+				</div>
+				<!-- /.row -->	
+				
+			</form>
+				
+		</section>
+		<!-- /.scrollable wrapper -->
+	        
+	</section>
+	<!-- /.vbox -->
+	
+</body>
+</html>

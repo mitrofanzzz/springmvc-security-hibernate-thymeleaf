@@ -1,0 +1,52 @@
+package uk.co.creative74.springmvchibernate.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
+
+import uk.co.creative74.springmvchibernate.model.Employee;
+import uk.co.creative74.springmvchibernate.model.User;
+
+@Repository("userDao")
+public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
+
+	public User findById(int id) {
+		return getByKey(id);
+	}
+
+	@SuppressWarnings("unchecked")
+	public User findByUsername(String username) {
+		
+		List<User> users = new ArrayList<User>();
+		
+		Query query = getSession().createSQLQuery("select from User where username = :username");
+		query.setString("username", username);
+		users = (List<User>)query.list();
+		
+		if (users.size() > 0) {
+			return users.get(0);
+		} else {
+			return null;
+		}		
+	}
+
+	public void saveUser(User user) {
+		persist(user);
+	}
+
+	public void deleteUserByID(int id) {
+		Query query = getSession().createSQLQuery("delete from User where id = :id");
+		query.setInteger("id", id);
+		query.executeUpdate();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> findAllUsers() {
+		Criteria criteria = createEntityCriteria();
+		return (List<User>) criteria.list();
+	}
+
+}
