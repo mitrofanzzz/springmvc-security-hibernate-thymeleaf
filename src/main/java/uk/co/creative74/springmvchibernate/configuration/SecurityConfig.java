@@ -94,7 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // is successful, and the delete-cookies and invalidate-session make sure that we clean up after logout
             .logout()
                 .logoutRequestMatcher( new AntPathRequestMatcher( "/logout" ) )
-                .logoutSuccessUrl( "/login?logout" )
+                .logoutSuccessUrl( "/logout" )
                 .deleteCookies( "JSESSIONID" )
                 .invalidateHttpSession( true )
                 .and()

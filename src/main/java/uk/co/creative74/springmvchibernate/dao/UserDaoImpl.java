@@ -24,8 +24,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	@SuppressWarnings("unchecked")
 	public User findByUsername(String username) {
 		
-		appLog.debug("looking for user in DB : " + username);
-		
 		List<User> users = new ArrayList<User>();
 		
 		users = getSession()
@@ -35,14 +33,12 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		
 		if (users.size() > 0) {
 			
-			appLog.debug("found for user in DB : " + users.get(0).getUsername());
-			
 			return users.get(0);
+			
 		} else {
 			
-			appLog.debug("looking for user in DB : NULL");
-			
 			return null;
+			
 		}		
 	}
 

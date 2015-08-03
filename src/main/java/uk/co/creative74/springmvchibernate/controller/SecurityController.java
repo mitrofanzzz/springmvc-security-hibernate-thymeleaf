@@ -70,6 +70,23 @@ public class SecurityController {
 
 	}
 	
+	@RequestMapping(value = "/admin/logout", method = RequestMethod.GET)
+	public String logout(
+							ModelMap model,
+							HttpServletRequest request) {
+		
+		appLog.debug("GET /admin/logout");
+
+		appLog.debug("You've been logged out.");
+		model.addAttribute("msg", "You've been logged out successfully.");
+		
+		User user = new User();
+		model.addAttribute("user", user);
+		
+		return "admin-login/login";
+
+	}
+	
 	// customize the error message
 	private String getErrorMessage(HttpServletRequest request, String key) {
 
@@ -98,7 +115,7 @@ public class SecurityController {
 	}
 	
 	// for 403 access denied page
-	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	@RequestMapping(value = "/403")
 	public String accesssDenied(ModelMap model) {
 
 		appLog.debug("GET /403");
