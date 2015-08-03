@@ -4,8 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,14 +76,47 @@ public class SecurityController {
 		Exception exception = (Exception) request.getSession().getAttribute(key);
 
 		String error = "";
+		
 		if (exception instanceof BadCredentialsException) {
+			
+			appLog.debug("Invalid username and password!");
 			error = "Invalid username and password!";
+			
 		} else if (exception instanceof LockedException) {
+			
+			appLog.debug("Exception : " + exception.getMessage());
 			error = exception.getMessage();
+			
 		} else {
+			
 			error = "Invalid username and password!";
+			error = "Invalid username and password! (2)";
+			
 		}
 
 		return error;
+	}
+	
+	// for 403 access denied page
+	@RequestMapping(value = "/403")
+	public String accesssDenied(ModelMap model) {
+
+		appLog.debug("GET /403");
+
+		// check if user is login
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			
+			appLog.debug("auth instanceof AnonymousAuthenticationToken");
+
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			appLog.debug("userDetail : " + userDetail);
+
+			model.addAttribute("username", userDetail.getUsername());
+
+		}
+
+		return "403";
+
 	}
 }

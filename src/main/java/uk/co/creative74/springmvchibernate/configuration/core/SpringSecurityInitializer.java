@@ -4,10 +4,6 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 
 import uk.co.creative74.springmvchibernate.configuration.SecurityConfig;
 
-public class SpringSecurityInitializer
-      extends AbstractSecurityWebApplicationInitializer {
+public class SpringSecurityInitializer extends AbstractSecurityWebApplicationInitializer {
 
-    public SpringSecurityInitializer() {
-        super(SecurityConfig.class);
-    }
 }

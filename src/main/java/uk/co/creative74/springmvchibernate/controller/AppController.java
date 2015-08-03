@@ -36,7 +36,7 @@ public class AppController {
 	/*
 	 * This method will list all existing employees.
 	 */
-	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/list" }, method = RequestMethod.GET)
 	public String listEmployees(ModelMap model) {
 		
 		appLog.debug("GET /list");
@@ -49,7 +49,7 @@ public class AppController {
 	/*
 	 * This method will provide the medium to add a new employee.
 	 */
-	@RequestMapping(value = { "/new" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/new" }, method = RequestMethod.GET)
 	public String newEmployee(ModelMap model) {
 		
 		Employee employee = new Employee();
@@ -63,7 +63,7 @@ public class AppController {
 	 * This method will be called on form submission, handling POST request for
 	 * saving employee in database. It also validates the user input
 	 */
-	@RequestMapping(value = { "/createOrUpdateEmployee" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/admin/createOrUpdateEmployee" }, method = RequestMethod.POST)
 	public String saveEmployee(	@Valid Employee employee,
 								BindingResult result,
 								ModelMap model) {
@@ -116,7 +116,7 @@ public class AppController {
 	/*
 	 * This method will provide the medium to update an existing employee.
 	 */
-	@RequestMapping(value = { "/edit-{ssn}-employee" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/edit-{ssn}-employee" }, method = RequestMethod.GET)
 	public String editEmployee(@PathVariable String ssn, ModelMap model) {
 		
 		appLog.debug("GET /edit-{ssn}-employee");
@@ -132,7 +132,7 @@ public class AppController {
 	/*
 	 * This method will delete an employee by it's SSN value.
 	 */
-	@RequestMapping(value = { "/delete-{ssn}-employee" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/delete-{ssn}-employee" }, method = RequestMethod.GET)
 	public String deleteEmployee(@PathVariable String ssn) {
 		service.deleteEmployeeBySsn(ssn);
 		return "redirect:/list";

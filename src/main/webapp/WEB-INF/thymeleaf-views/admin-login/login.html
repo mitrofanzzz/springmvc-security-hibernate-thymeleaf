@@ -29,10 +29,18 @@
 					<h4>Login with Username and Password</h4>
 				</div>
 				
+				<p th:if="${error}" class="error help-block">
+					Here is an error : 
+					<span class="label bg-danger" th:value="${error}">test</span>
+				</p>
+				
 			</div>
 			<!-- /.row -->
 			
 			<form action="#" th:action="@{/login}" th:object="${user}" method="post">
+			
+				<!-- CSRF Protection : http://docs.spring.io/spring-security/site/docs/3.2.5.RELEASE/reference/htmlsingle/#csrf -->
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 				
 				<!-- .row -->
 				<div class="row">
@@ -53,7 +61,7 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label">Joining Date</label>
+							<label class="control-label">Password</label>
 							<input type="text" th:field="*{password}" class="form-control"></input>
 							<p th:if="${#fields.hasErrors('password')}" class="error help-block">
 								<span class="label bg-danger" th:errors="*{password}"></span>

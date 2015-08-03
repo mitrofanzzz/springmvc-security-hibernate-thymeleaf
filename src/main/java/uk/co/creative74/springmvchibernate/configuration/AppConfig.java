@@ -16,7 +16,7 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"uk.co.creative74.springmvchibernate.*"})
+@ComponentScan(basePackages = "uk.co.creative74.springmvchibernate")
 @PropertySource("classpath:thymeleaf.properties")
 @Import({ SecurityConfig.class })
 public class AppConfig {
