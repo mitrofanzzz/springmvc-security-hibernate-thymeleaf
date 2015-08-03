@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Good Thymes Virtual Grocery</title>
+  <title>Forbidden</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 
 
@@ -22,7 +22,7 @@
 	<section class="vbox" th:fragment="content">
 
 		<header class="header bg-white b-b">
-			<p>Success.</p>
+			<p>Forbidden.</p>
 		</header>
 
 		<!-- .scrollable wrapper -->
@@ -34,26 +34,16 @@
 					
 				<div class="col-lg-6">
 	
-					<p>Message : <span th:text="${message}"></span></p>
+					<p>HTTP Status 403 - Access is denied</p>
+					
+					<p th:if="${user == null}">You do not have permission to access this page!</p>
+					<p th:if="${user != null}">${user.username} does not have permission to access this page!</p>
 					
 				</div>
 	
 			</div>
 			<!-- /.row -->	
 			
-			<!-- .row -->
-			<div class="row">
-			
-						
-				<div class="col-lg-6" style="padding-top: 20px;">
-	
-					Go back to Go back to <a href="/admin/allemployes.html" th:href="@{/list}" style="text-decoration: underline;">List of All Employees</a>
-	
-				</div>
-	
-			</div>
-			<!-- /.row -->	
-				
 		</section>
 		<!-- /.scrollable wrapper -->
 	        

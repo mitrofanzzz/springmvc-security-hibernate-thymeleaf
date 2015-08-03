@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // the most catch-all type patterns should at the bottom of the list as the matches are executed
             // in the order they are configured below. So /** (anyRequest()) should always be at the bottom of the list.
             .authorizeRequests()
-                .antMatchers( "/login**" ).permitAll()
+                .antMatchers( "/assets/**", "/login**" ).permitAll()
                 .antMatchers( "/admin/**" ).hasRole( "ADMIN" )
                 .anyRequest().authenticated()
                 .and()
@@ -82,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // password-parameter: the name of the request parameter which contains the password
              .formLogin()
                 .loginPage( "/login" )
-                .loginProcessingUrl( "/login" )
+                //.loginProcessingUrl( "/login" )
                 .defaultSuccessUrl( "/controlPanel" )
                 .failureUrl( "/login?error" )
                 .usernameParameter( "username" )

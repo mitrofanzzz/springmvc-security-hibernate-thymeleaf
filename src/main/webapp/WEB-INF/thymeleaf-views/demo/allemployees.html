@@ -49,8 +49,8 @@
 									<td th:text="${employee.joiningDate}">Joing Date</td>
 									<td th:text="${employee.salary}">Salary</td>
 									<td th:text="${employee.ssn}">SSN</td>
-									<td><a href="#" th:href="|/edit-${employee.ssn}-employee/|">edit</a></td>
-									<td><a href="#" th:href="@{'/delete-' + ${employee.ssn} + '-employee/'}">delete</a></td>
+									<td><a href="#" th:href="|/admin/edit-${employee.ssn}-employee/|">edit</a></td>
+									<td><a href="#" th:href="@{'/admin/delete-' + ${employee.ssn} + '-employee/'}">delete</a></td>
 								</tr>
 								
 							</tbody>
@@ -59,7 +59,7 @@
 
 					<br/>
 			
-					<a href="/registration.html" th:href="@{/new}" style="text-decoration: underline;">Add New Employee</a>
+					<a href="/registration.html" th:href="@{/admin/new}" style="text-decoration: underline;">Add New Employee</a>
 		
 				</div>
 				

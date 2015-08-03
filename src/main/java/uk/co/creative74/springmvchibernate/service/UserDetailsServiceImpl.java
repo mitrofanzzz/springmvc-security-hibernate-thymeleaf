@@ -22,7 +22,7 @@ import uk.co.creative74.springmvchibernate.dao.UserDao;
 import uk.co.creative74.springmvchibernate.model.UserRole;
 
 @Service("userDetailsService")
-public class MyUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	static final Logger appLog = LoggerFactory.getLogger("application-log");
 
@@ -32,9 +32,14 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 	
-		appLog.debug("loadUserByUsername ...");
+		appLog.debug("loadUserByUsername : " + username);
 		
+		appLog.debug("before ... ");
 		uk.co.creative74.springmvchibernate.model.User user = userDao.findByUsername(username);
+		appLog.debug("after ... ");
+		
+		appLog.debug("user found : " + user.getPassword());
+		
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 
 		return buildUserForAuthentication(user, authorities);

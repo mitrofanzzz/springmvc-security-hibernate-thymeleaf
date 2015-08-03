@@ -98,7 +98,7 @@ public class SecurityController {
 	}
 	
 	// for 403 access denied page
-	@RequestMapping(value = "/403")
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accesssDenied(ModelMap model) {
 
 		appLog.debug("GET /403");

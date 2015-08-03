@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.timeleaf.spring.support.ThymeleafLayoutInterceptor;
 
 /*
@@ -19,12 +19,12 @@ import org.timeleaf.spring.support.ThymeleafLayoutInterceptor;
  * Extending from WebMvcConfigurerAdapter instead fixed this problem for me.
  */
 @Configuration
-public class WebMvcConfig extends WebMvcConfigurationSupport {
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	static final Logger appLog = LoggerFactory.getLogger("application-log");
 
 	@Override
-	protected void addInterceptors(InterceptorRegistry registry) {
+	public void addInterceptors(InterceptorRegistry registry) {
 
 		appLog.info("Registering the ThymeleafLayoutInterceptor");
 		registry.addInterceptor(new ThymeleafLayoutInterceptor());
@@ -39,6 +39,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		
+		appLog.info("addResourceHandlers(ResourceHandlerRegistry registry) ...");
+		
 		registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
 	}
 }
