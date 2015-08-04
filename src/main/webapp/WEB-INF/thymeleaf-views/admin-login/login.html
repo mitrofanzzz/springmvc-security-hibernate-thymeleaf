@@ -27,6 +27,13 @@
 			
 				<div class="col-lg-12">
 					<h4>Login with Username and Password</h4>
+					<p>
+						There are two users registered whome have different degrees of access : <br/>
+						mkyong, 123456 (roles : role_admin, role_user)<br/>
+						alex, 123456 (roles : role_user)<br/><br/>
+						
+						See mysql.sql for insertion after hibernate creates the required tables.
+					</p>
 				</div>
 				
 				<p th:if="${error}" class="error help-block">
